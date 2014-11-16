@@ -7,7 +7,6 @@ data(Master)
 
 Batting %>%
   group_by(playerID,yearID) %>%
-  mutate(G_fielding = G - G_batting) %>%
   summarize(triples = sum(X3B),
             team=paste(teamID,collapse=','),
             leagues.count=n_distinct(lgID)) %>%
