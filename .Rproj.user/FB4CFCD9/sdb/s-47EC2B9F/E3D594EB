@@ -1,0 +1,18 @@
+{
+    "contents" : "library(\"dplyr\")\nlibrary(\"Lahman\")\n\ndata(Batting)\ndata(Fielding)\ndata(Master)\n\nBatting %>%\n  group_by(playerID,yearID) %>%\n  summarize(triples = sum(X3B),\n            team=paste(teamID,collapse=','),\n            leagues.count=n_distinct(lgID)) %>%\n  ungroup() %>%\n  arrange(desc(triples)) %>%\n  filter(yearID==2004) %>%\n  left_join(Master %>%\n              mutate(name=paste(Master$nameFirst, Master$nameLast, sep=' ')) %>%\n              select(playerID,name)) %>%\n  select(Name=name,Team=team,Year=yearID,Triples=triples) %>%\n  slice(1:5) \n\n\n",
+    "created" : 1415409190702.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2931760006",
+    "id" : "E3D594EB",
+    "lastKnownWriteTime" : 1416168943,
+    "path" : "~/Documents/Package of the Month/dplyr.R",
+    "project_path" : "dplyr.R",
+    "properties" : {
+        "notebook_format" : "html_document",
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

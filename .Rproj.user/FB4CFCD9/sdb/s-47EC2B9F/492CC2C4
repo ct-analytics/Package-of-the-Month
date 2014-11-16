@@ -1,0 +1,17 @@
+{
+    "contents" : "library(Lahman)\nlibrary(dplyr)\ndata(Master)\n\nMaster %>%\n  filter(nameFirst==\"David\") %>%\n  select(playerID,nameFirst,nameLast) %>%\n  arrange(nameLast)\n## ortizda01\n\ndata(Batting)\n\ndavid.ortiz.ab <- Batting %>%\n  filter(playerID == \"ortizda01\") %>%\n  mutate(timestamp=as.POSIXct(paste(yearID,\"01\",\"01\",sep=\"-\"), origin = \"1960-01-01\")) %>%\n  select(timestamp,count=AB)\n\nlibrary(BreakoutDetection)\n\nd.ortiz.ab.breakout <- breakout(david.ortiz.ab,\n                                min.size=2,\n                                method=\"multi\",\n                                degree=1,\n                                plot=T)\nd.ortiz.ab.breakout\nd.ortiz.ab.breakout$plot\n",
+    "created" : 1416168991960.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2503074890",
+    "id" : "492CC2C4",
+    "lastKnownWriteTime" : 1416172684,
+    "path" : "~/Documents/Package of the Month/breakoutdetection.R",
+    "project_path" : "breakoutdetection.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
