@@ -3,8 +3,8 @@ library(DT)
 data(Master)
 
 datatable(Master)
-## Kind of large, lets make it a bit smaller and remove row names
 
+## Kind of large, lets make it a bit smaller and remove row names
 datatable(head(Master,n=1000),
           rownames=F,
           options=list(
@@ -15,7 +15,7 @@ datatable(head(Master,n=1000),
 ### Note that first column is 0
 datatable(head(Master,n=1000),
           options=list(
-            order = list(list(16, 'desc'))
+            order = list(list(20, 'desc'))
           ))
 
 ## drag and drop columns, show/hide columns
@@ -31,8 +31,9 @@ dt <- datatable(head(Master,n=1000),
           extensions = c('ColReorder','ColVis'),
           options = list(
             pageLength = 20,
-            order = list(list(16, 'desc')),
-            dom = 'RC<"clear">lfrtip'
+            order = list(list(20, 'desc')),
+            dom = 'RC<"clear">lfrtip',
+            columnDefs = list(list(visible=F, targets=c(seq(1,14),16,17,seq(21,25))))
           ))
 
 saveWidget(dt,"DT example.html")
