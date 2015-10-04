@@ -90,7 +90,7 @@ ap <- Batting %>%
 ap.xts <- xts(x=ap$HR,order.by=ymd(paste(ap$yearID,"11","01",sep="-")))
 
 dygraph(cbind(df.xts,ap.xts)) %>% 
-  dyRangeSelector(dateWindow = c("2003-01-23", "2014-11-01")) %>% 
+  dyRangeSelector() %>% 
   dySeries("..1", label = "David Ortiz") %>%
   dySeries("..2", label = "Albert Pujols") %>%
   dyAxis("x", drawGrid = FALSE) %>%

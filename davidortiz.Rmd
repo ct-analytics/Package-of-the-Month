@@ -1,0 +1,33 @@
+---
+title: "David Ortiz Statistics"
+author: "Christopher Teixeira"
+date: "October 3, 2015"
+output: 
+  html_document:
+    theme: journal
+    self_contained: false
+  
+---
+
+Below is a selection of statistics from [Baseball Reference](http://bbref.com/pi/shareit/DY17L). 
+
+```{r, echo=F,warning=F,message=F}
+library(rvest)
+library(dplyr)
+url <- "http://www.baseball-reference.com/play-index/share.cgi?id=DY17L"
+
+raw.html <- read_html(url)
+
+david.ortiz <- raw.html %>% 
+  html_nodes("table") %>% 
+  html_table(fill=TRUE) %>% 
+  .[[1]] 
+
+library(stringr)
+david.ortiz$Year <- str_extract(david.ortiz$Year,"\\d{4}") %>% as.numeric
+
+david.ortiz <- david.ortiz[,c('Year','Age','Tm','Lg','G','PA','AB','R','H','RBI','HR','BB','BA')] %>%
+  filter(!is.na(Year))
+
+knitr::kable(david.ortiz)
+```
